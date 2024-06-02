@@ -1,9 +1,157 @@
-<!doctype html>
+<!DOCTYPE html>
 <head>
-    <title> b l a n k </title>
+  <title>Karaoke</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @font-face {
+      font-family: "MyCustomFont";
+      src: url("ABCEstragonEdu-Regular.woff") format("woff");
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    }
+
+    /* text selection highlight */
+    ::selection {
+      color: magenta;
+      background: yellow;
+    }
+
+    #song-select-container {
+      font-family: "MyCustomFont", Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      width: 100%;
+      color: yellow;
+    }
+
+    #song-select-container > div {
+      flex: 0 0 auto;
+    }
+
+    #song-select {
+      flex: 1 1 auto;
+      font: inherit;
+      background: yellow;
+      color: magenta;
+      padding: 0 20px;
+      border: none;
+      outline: none;
+      margin-left: 12px;
+    }
+
+    #record-btn {
+      width: 100%;
+      font: inherit;
+      background: yellow;
+      color: magenta;
+      padding: 0 20px;
+      border: none;
+      outline: none;
+      font-family: "MyCustomFont", Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 4px 20px;
+      cursor: pointer;
+    }
+
+    #sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100%;
+      background: magenta;
+      color: yellow;
+      box-shadow: 0px 0px 5px magenta, /* Inner glow */ 0px 0px 10px magenta,
+        /* Middle glow */ 0px 0px 20px magenta,
+        /* Outer glow */ 0px 0px 30px magenta; /* Far outer glow */
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar > *:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: yellow;
+    }
+
+    #gallery {
+      flex: 0 0 auto;
+      display: block;
+      width: 100%;
+      font: inherit;
+      background: yellow;
+      color: magenta;
+      border: none;
+      outline: none;
+      font-family: "MyCustomFont", Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 4px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+  </style>
 </head>
 
 <body>
-   <canvas id="cnv_element"></canvas>
-   <script src="script.js"></script>
+  <canvas id="canvas_element"></canvas>
+
+  <div id="sidebar">
+    <div id="song-select-container">
+      <div>SONG:</div>
+      <select id="song-select">
+        <option value="empty" selected disabled>--</option>
+        <option value="coding_1.mp3">1</option>
+        <option value="corrupted2.mp3">2</option>
+        <option value="cresandobell.mp3">3</option>
+        <option value="exp3.mp3">4</option>
+        <option value="kalan_note.mp3">5</option>
+      </select>
+    </div>
+
+    <button id="record-btn" style="display: none">RECORD</button>
+
+    <div class="spacer"></div>
+
+    <a
+      id="gallery"
+      href="/gallery.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      >VIEW GALLERY</a
+    >
+
+    <p>
+      Select a song from the box above, and move your mouse to &quot;sing&quot;
+      along!
+    </p>
+
+    <p>
+      Please record your performance and send it to
+      <a href="mailto:s3930515@rmit.edu.vn">s3930515@rmit.edu.vn</a>.
+    </p>
+  </div>
+
+  <audio id="bg-audio" loop></audio>
+
+  <script src="script.js"></script>
 </body>
