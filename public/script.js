@@ -183,8 +183,13 @@ async function initAudioCtx() {
 
   voiceNode = audioCtx.createBufferSource();
   voiceNode.loop = true;
-  voiceNode.connect(audioCtx.destination);
-  voiceNode.connect(recordNode);
+
+  const voiceGainNode = audioCtx.createGain();
+  voiceNode.connect(voiceGainNode);
+  voiceGainNode.gain.value = 0.25;
+
+  voiceGainNode.connect(audioCtx.destination);
+  voiceGainNode.connect(recordNode);
 
   const audioSourceNode = audioCtx.createMediaElementSource(bgAudioEl);
   audioSourceNode.connect(audioCtx.destination);
